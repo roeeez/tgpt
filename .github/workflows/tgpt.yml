@@ -1,24 +1,21 @@
-
 name: tgpt
 
 on:
-
   workflow_dispatch:
-
+    inputs:
+      question:
+        description: 'Question'
+        required: true
 
 jobs:
-
   build:
-  
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Install
         run: |
           curl -sSL https://raw.githubusercontent.com/aandrew-me/tgpt/main/install | bash -s /usr/local/bin
 
-      - name: Ask 
+      - name: Ask
         run: |
-          tgpt "Hello world!"
-        
+          tgpt "${{ github.event.inputs.question }}"
